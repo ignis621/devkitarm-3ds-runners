@@ -28,23 +28,18 @@ RUN dkp-pacman -Syyu --noconfirm && \
 
 # download, extract, and install external 3DS tools to /usr/local/bin
 RUN mkdir -p /tmp/3dstools && cd /tmp/3dstools && \
-    # 3dstool
     curl -L "https://github.com/dnasdw/3dstool/releases/download/v1.2.6/3dstool_linux_x86_64.tar.gz" -o 3dstool.tar.gz && \
     tar -xzf 3dstool.tar.gz && \
-    mv 3dstool_linux_x86_64/3dstool /usr/local/bin/ && \
-    # bannertool
+    find . -name "3dstool" -type f -exec mv {} /usr/local/bin/ \; && \
     curl -L "https://github.com/Epicpkmn11/bannertool/releases/download/v1.2.2/bannertool.zip" -o bannertool.zip && \
-    unzip bannertool.zip && \
-    mv linux-x86_64/bannertool /usr/local/bin/ && \
-    # makerom
+    unzip -o bannertool.zip && \
+    find . -name "bannertool" -type f -exec mv {} /usr/local/bin/ \; && \
     curl -L "https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.18.3/makerom-v0.18.3-ubuntu_x86_64.zip" -o makerom.zip && \
-    unzip makerom.zip && \
-    mv makerom /usr/local/bin/ && \
-    # ctrtool
+    unzip -o makerom.zip && \
+    find . -name "makerom" -type f -exec mv {} /usr/local/bin/ \; && \
     curl -L "https://github.com/3DSGuy/Project_CTR/releases/download/ctrtool-v1.1.0/ctrtool-v1.1.0-ubuntu_x86_64.zip" -o ctrtool.zip && \
-    unzip ctrtool.zip && \
-    mv ctrtool /usr/local/bin/ && \
-    # make all binaries executable and clean up the temp folder
+    unzip -o ctrtool.zip && \
+    find . -name "ctrtool" -type f -exec mv {} /usr/local/bin/ \; && \
     chmod +x /usr/local/bin/3dstool /usr/local/bin/bannertool /usr/local/bin/makerom /usr/local/bin/ctrtool && \
     cd / && rm -rf /tmp/3dstools
 
