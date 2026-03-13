@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ignis621/devkitarm-3ds-ci:latest
+          tags: ignis621/devkitarm-3ds-runners:latest
